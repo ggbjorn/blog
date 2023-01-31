@@ -1,7 +1,14 @@
 <%- include("partials/header") -%>
 
-<h1>Bjørn's top of mind.</h1>
-<p><%= homeStartingContent %></p>
+  <h1>Bjørn's top of mind.</h1>
+  <p><%= homeStartingContent %></p>
 
+
+  <% console.log(posts);              %>
+
+  <%  posts.forEach(function(post) {  %>
+  <h1><%= post.title %></h1>
+  <p><%= post.content %></p>
+  <%  });                             %>
 
 <%- include("partials/footer") -%>
