@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require("lodash");
 
 
 const homeStartingContent = "Sharing wisdom I've stumbled upon along the way in hopes of saving others some misteps.";
@@ -64,9 +65,18 @@ app.post("/compose", function(req, res){
 // })
 
 
-app.get("/posts/:postName",function(req, res){
-  console.log(req.params.postName);
-});
+  app.get("/posts/:postName", function(req, res){
+    const requestedTitle = _.toLower(req.params.postName);
+
+      posts.forEach(function(post){
+        const storedTitle = _.toLower(post.title);
+        // console.log(requestedTitle);
+        // console.log(storedTitle);
+          if (storedTitle === requestedTitle) {
+            console.log("match found!");
+          }
+      });
+    });
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
